@@ -35,6 +35,8 @@ ScaffoldMessenger.of(context).showSnackBar(
     margin: const EdgeInsets.all(12),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
   ),
 );
+    await Future.delayed(const Duration(seconds: 1));
+    Navigator.pushReplacementNamed(context, '/login');
     }
   }
   @override
