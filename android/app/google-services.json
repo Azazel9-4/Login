@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842317772351",
+    "project_id": "log-in-f762e",
+    "storage_bucket": "log-in-f762e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842317772351:android:bf9554e311eb8f760f2a8a",
+        "android_client_info": {
+          "package_name": "com.example.log_in"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKZXXNHgWeMjyjkBvWIRBMBMh1emXA6qg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
