@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'song_lyrics_display/song_lyrics_display.dart'; // Correct import
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,34 +24,49 @@ class _LoginScreenState extends State<LoginScreen> {
     if (snapshot.docs.isNotEmpty) {
       // Get first and last name from Firestore
       final userData = snapshot.docs.first.data() as Map<String, dynamic>;
-      final firstName = userData['firstName'] ?? '';
-      final lastName = userData['lastName'] ?? '';
+      final firstName = userData['first_name'] ?? '';
+      final lastName = userData['last_name'] ?? '';
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green.shade700,
           content: Text(
             'Login Successful! Welcome, $firstName $lastName!',
-            style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+            style: const TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
           ),
           behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(12),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          margin: const EdgeInsets.all(12),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+      );
+
+      // Navigate to the song_lyrics_display app
+      await Future.delayed(const Duration(seconds: 1));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SongLyricsDisplayApp(),
         ),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: Colors.redAccent,
-      behavior: SnackBarBehavior.floating,
-      margin: const EdgeInsets.all(12),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      content: const Text(
-        'Invalid username or password!',
-        style: TextStyle(
-          color: Colors.black, fontSize: 16,
+        SnackBar(
+          backgroundColor: Colors.redAccent,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(12),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          content: const Text(
+            'Invalid username or password!',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+      );
     }
   }
 
@@ -94,7 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 50),
-
               // Username Field
               TextField(
                 controller: _usernameController,
@@ -116,7 +131,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
               // Password Field
               TextField(
                 controller: _passwordController,
@@ -139,7 +153,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 40),
-
               // Login Button
               SizedBox(
                 width: double.infinity,
@@ -163,7 +176,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
               // Sign Up Text
               TextButton(
                 onPressed: () {
